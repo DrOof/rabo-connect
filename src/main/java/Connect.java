@@ -63,6 +63,21 @@ public class Connect {
 
             out = response.body();
 
+//            OkHttpClient client = new OkHttpClient().newBuilder().build();
+//            Request request = new Request.Builder()
+//                    .url("https://api-sandbox.rabobank.nl/openapi/sandbox/payments/account-information/ais/accounts")
+//                    .method( "GET", null )
+//                    .addHeader( "Authorization", authorization )
+//                    .addHeader( "TPP-Signature-Certificate", tppSignatureCertificate )
+//                    .addHeader( "X-IBM-Client-Id", xIbmClientId )
+//                    .addHeader( "Date", date )
+//                    .addHeader( "Digest", digest )
+//                    .addHeader( "X-Request-Id", xRequestId )
+//                    .addHeader( "Signature", signature )
+//                    .build();
+//            Response response = client.newCall( request ).execute();
+//
+//            out = response.body().string();
 
         } catch ( Exception e ) {
             e.printStackTrace();
