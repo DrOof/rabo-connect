@@ -127,14 +127,14 @@ public class Connect {
     private String generateSignature( String date, String digest, String id ) throws GeneralSecurityException {
 
         // Step 1: Create content to sign.
-        StringWriter writer = new StringWriter();
-        PrintWriter printer = new PrintWriter( writer );
+        var writer = new StringWriter();
+        var printer = new PrintWriter( writer );
         printer.print( "date: " + date + "\n" );
         printer.print( "digest: " + digest + "\n" );
         printer.print( "x-request-id: " + id );
 
         // Step 2: Create a signature ( SHA256/RSA )
-        Signature sig = Signature.getInstance( "SHA512WithRSA" );
+        var sig = Signature.getInstance( "SHA512WithRSA" );
         sig.initSign( resolvePrivateKey( key ) );
         sig.update( writer.toString().getBytes( StandardCharsets.UTF_8 ) );
 
@@ -143,6 +143,5 @@ public class Connect {
         return MessageFormat.format( "keyId=\"{0}\", algorithm=\"{1}\", headers=\"{2}\", signature=\"{3}\"", new Object[] { "1523433508", "rsa-sha512", "date digest x-request-id", signature } );
 
     }
-
 
 }
