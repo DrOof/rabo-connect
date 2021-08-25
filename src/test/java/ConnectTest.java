@@ -5,9 +5,6 @@ import java.security.GeneralSecurityException;
 
 public class ConnectTest {
 
-    private static final String key = "";
-    private static final String cert = "";
-
     @Test
     public void testConnect() throws GeneralSecurityException, IOException, InterruptedException {
 
