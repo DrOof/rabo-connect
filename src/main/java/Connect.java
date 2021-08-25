@@ -43,7 +43,6 @@ public class Connect {
                 .header( "Digest",                      digest )
                 .header( "X-Request-Id",                xRequestId )
                 .header( "Signature",                   signature )
-                .header( "Accept",                      "application/json" )
                 .build();
 
         var out = produceHttpClient().send( request, HttpResponse.BodyHandlers.ofString( StandardCharsets.UTF_8 ) ).body();
