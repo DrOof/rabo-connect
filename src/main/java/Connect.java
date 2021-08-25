@@ -26,26 +26,13 @@ public class Connect {
 
     public String connect( String in ) throws GeneralSecurityException, IOException, InterruptedException {
 
-        var authorization = "Bearer " + in;
-        System.out.println( "Authorization: " + authorization );
-
-        var tppSignatureCertificate = cert;
-        System.out.println( "TPP-Signature-Certificate: " + tppSignatureCertificate );
-
-        var xIbmClientId = clientId;
-        System.out.println( "X-IBM-Client-Id: " + xIbmClientId );
-
-        var date = generateFormattedDate( Calendar.getInstance().getTime() );
-        System.out.println( "Date: " + date );
-
-        var digest = generateDigest( "" );
-        System.out.println( "Digest: " + digest );
-
-        var xRequestId = UUID.randomUUID().toString();
-        System.out.println( "X-Request-Id: " + xRequestId );
-
-        var signature = generateSignature( date, digest, xRequestId );
-        System.out.println( "Signature: " + signature );
+        var authorization                   = "Bearer " + in;
+        var tppSignatureCertificate  = cert;
+        var xIbmClientId             = clientId;
+        var date                     = generateFormattedDate( Calendar.getInstance().getTime() );
+        var digest                   = generateDigest( "" );
+        var xRequestId               = generateRequestId();
+        var signature                = generateSignature( date, digest, xRequestId );
 
         var request = HttpRequest.newBuilder()
                 .uri( URI.create( "https://api-sandbox.rabobank.nl/openapi/sandbox/payments/account-information/ais/accounts" ) )
@@ -71,6 +58,10 @@ public class Connect {
      */
     private HttpClient produceHttpClient() {
         return HttpClient.newBuilder().build();
+    }
+
+    private String generateRequestId() {
+        return UUID.randomUUID().toString();
     }
 
     /**
